@@ -1,5 +1,5 @@
 import { Actions, ActionType } from ".";
-import { UpdateFormState } from "./types";
+import { FormState, UpdateFormState } from "./types";
 
 export const UpdateFormReducer = (state: UpdateFormState, action: Actions): UpdateFormState => {
     switch (action.type) {
@@ -7,21 +7,24 @@ export const UpdateFormReducer = (state: UpdateFormState, action: Actions): Upda
           if(action.value === state.firstName) return state
           else return {
               ...state,
-              firstName: action.value
+              firstName: action.value,
+              state: FormState.DIRTY
           }
         }
         case ActionType.SET_LAST_NAME: {
           if(action.value === state.lastName) return state
           else return {
               ...state,
-              lastName: action.value
+              lastName: action.value,
+              state: FormState.DIRTY
           }
         }
         case ActionType.SET_AGE: {
           if(action.value === state.age) return state
           else return {
               ...state,
-              age: action.value
+              age: action.value,
+              state: FormState.DIRTY
           }
         }
       default:

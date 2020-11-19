@@ -1,12 +1,14 @@
+import { cleanup } from "@testing-library/react";
 import React, { createContext, useContext, useReducer } from "react";
 import { Actions } from "./actions";
-import { UpdateFormState } from "./types";
+import { FormState, UpdateFormState } from "./types";
 import { UpdateFormReducer } from "./updateFormReducer";
 
 const InitialUpdateFormState: UpdateFormState = {
   firstName: "John",
   lastName: "Doe",
   age: 21,
+  state: FormState.CLEAN
 };
 
 export interface UpdateFormDispatch {

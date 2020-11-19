@@ -1,4 +1,4 @@
-import { UpdateFormState } from "./types"
+import { FormState, UpdateFormState } from "./types"
 import { UpdateFormReducer } from "./updateFormReducer"
 import { ActionType } from './actions'
 
@@ -6,9 +6,10 @@ describe('UpdateFormReducer', () => {
     const initialState : UpdateFormState = {
         firstName: "John",
         lastName: "Doe",
-        age: 21
+        age: 21,
+        state: FormState.CLEAN
     }
-    it('updates first name', () => {
+    it('updates first name and marks state as dirty', () => {
 
         const result = UpdateFormReducer(initialState, {
             type: ActionType.SET_FIRST_NAME,
@@ -17,7 +18,8 @@ describe('UpdateFormReducer', () => {
 
         expect(result).toStrictEqual({
             ...initialState,
-            firstName: "Jane"
+            firstName: "Jane",
+            state: FormState.DIRTY
         })
     })
 
@@ -31,7 +33,7 @@ describe('UpdateFormReducer', () => {
         expect(result).toBe(initialState)
     })
 
-    it('updates last name', () => {
+    it('updates last name and marks state as dirty', () => {
 
         const result = UpdateFormReducer(initialState, {
             type: ActionType.SET_LAST_NAME,
@@ -40,7 +42,8 @@ describe('UpdateFormReducer', () => {
 
         expect(result).toStrictEqual({
             ...initialState,
-            lastName: "Travolta"
+            lastName: "Travolta",
+            state: FormState.DIRTY
         })
     })
 
@@ -54,7 +57,7 @@ describe('UpdateFormReducer', () => {
         expect(result).toBe(initialState)
     })
 
-    it('updates age', () => {
+    it('updates age and marks state as dirty', () => {
 
         const result = UpdateFormReducer(initialState, {
             type: ActionType.SET_AGE,
@@ -63,7 +66,8 @@ describe('UpdateFormReducer', () => {
 
         expect(result).toStrictEqual({
             ...initialState,
-            age: 50
+            age: 50,
+            state: FormState.DIRTY
         })
     })
 
