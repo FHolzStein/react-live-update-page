@@ -1,7 +1,6 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor} from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
-import { FirstNameInput } from './FirstNameInput';
 import { UpdateFormContextReducer } from '../context';
 import { AgeNameInput } from './AgeInput';
 
@@ -15,11 +14,11 @@ describe('AgeInput', () => {
         const input = screen.getByDisplayValue('21')
         expect(input).toBeInTheDocument()
         await userEvent.clear(input)
-        userEvent.type(input, "50")
-        await waitFor( () =>    
-            expect(screen.getByDisplayValue('50')).toBeInTheDocument()
-        )
-        
+        await userEvent.type(input, "50")
+        fireEvent.focusOut(input)
+        const inputAfterUpdate = await screen.findByDisplayValue('50')
+        expect(inputAfterUpdate).toBeInTheDocument()
+        expect(inputAfterUpdate).toBeDisabled()
     })
 })
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { SetAge, useUpdateFormDispatch, useUpdateFormState } from '../context'
+import { FormState } from '../context/types'
 
 export const AgeNameInput = () : JSX.Element => {
     const {state} = useUpdateFormState()
@@ -11,5 +12,8 @@ export const AgeNameInput = () : JSX.Element => {
     const onBlur = (e: React.ChangeEvent<HTMLInputElement>): void => {
         dispatch(SetAge(parseFloat(e.target.value)))
     }
-    return <input type="text" value={value} onChange={valueChange} onBlur={onBlur}></input>
+
+    const shouldBeDisabled = () => state.state === FormState.LOADING || state.state === FormState.DIRTY
+
+    return <input type="text" value={value} onChange={valueChange} onBlur={onBlur} disabled={shouldBeDisabled()}></input>
 }
