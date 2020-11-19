@@ -80,5 +80,18 @@ describe('UpdateFormReducer', () => {
 
         expect(result).toBe(initialState)
     })
+
+    it('updates form state', () => {
+
+        const result = UpdateFormReducer(initialState, {
+            type: ActionType.SET_STATE,
+            value: FormState.LOADING
+        })
+
+        expect(result).toStrictEqual({
+            ...initialState,
+            state: FormState.LOADING
+        })
+    })
     
 })

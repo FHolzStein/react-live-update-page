@@ -1,7 +1,7 @@
 export enum FormState {
-    DIRTY,
-    LOADING,
-    CLEAN
+    DIRTY = "DIRTY",
+    LOADING = "LOADING",
+    CLEAN = "CLEAN"
 }
 
 export interface UpdateFormState {
